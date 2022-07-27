@@ -1,0 +1,68 @@
+#include<iostream>
+#include<cmath>
+#include "fix.hpp"
+#include<iomanip>
+findroot::findroot()
+{
+    x0=0;
+}
+findroot::findroot(double x)
+{
+    x0=x;
+}
+double findroot :: f(double x)    //define the function here, ie give the equation
+{
+    double a=pow(x,3)-x-1.0;    //write the equation whose roots are to be determined
+    return a;
+}
+double findroot :: g(double x)    //define the function here, ie give the equation
+{
+    double a=3*pow(x,2)-1.0;    //write the equation whose roots are to be determined
+    return a;
+}
+//double findroot ::error()
+//{
+ //   return 0.0001;
+//}
+void findroot  :: get()
+{
+    
+    cout<<"Enter the initial guesses:\nx0=";    //Enter the value of a for later use with goto)
+    cin>>x0;
+    cout<<"\n number of iteratation =";            //Enter the value of no of iteration
+    cin>>N;
+   cout<<"\n tolerable of error =";            //Enter the tolerable error
+    cin>>e;
+}
+
+void findroot :: put()
+{
+    cout<< endl<<"Root is "<< x1;
+}
+void findroot :: calroot()
+{ 
+    int step=1;
+    get();
+    do
+	 {
+		  x1 = g(x0);
+		  cout<<"Iteration-"<< step<<":\t x1 = "<< x1<<" and f(x1) = "<< f(x1)<< endl;
+
+		  step = step + 1;
+
+		  if(step>N)
+		  {
+			   cout<<"Not Convergent.";
+			   exit(0);
+		  }
+
+		  x0 = x1;
+
+	 }while( fabs(f(x1)) > e);
+
+	 cout<< endl<<"Root is "<< x1;
+	 //put();
+
+	 //return 0;
+    
+}
